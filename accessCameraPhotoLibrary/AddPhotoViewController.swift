@@ -13,14 +13,15 @@ import Photos
 
 class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var newPic : Bool?
+    var newPic : Bool? //for decision to save new photo taken on camera
     
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var addPicLabel: UILabel!
-    @IBOutlet weak var addPicButton: UIButton!
+    @IBOutlet weak var addPicLabel: UILabel! 
+    @IBOutlet weak var addPicButton: UIButton! 
     
     @IBAction func addButtonTapped(_ sender: Any) {
+        //display actionSheet alert style for user to choose between camera and photo library
         let pickImageAlert = UIAlertController(title: "Select Image From", message: "", preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .default) {(action) in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
@@ -67,14 +68,14 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         if mediaType.isEqual(to: kUTTypeImage as String){
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
             imageView.image = image
-            
+            //save newly taken photo to file 
             if newPic == true {
                 UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageError),nil)
                 
             }
         }
-        addPicLabel.isHidden = true
-        addPicButton.alpha = 0.5
+        addPicLabel.isHidden = true //the label will disappear once user uploaded picture
+        addPicButton.alpha = 0.5 //the button will turn half transparent after user upload picture
         self.dismiss(animated: true, completion: nil)
     }
     
