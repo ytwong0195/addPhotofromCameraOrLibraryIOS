@@ -34,7 +34,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.newPic = true
             }
         }
-        let cameraRollAction = UIAlertAction(title:"Camera Roll", style:.default) {(action) in
+        let cameraRollAction = UIAlertAction(title:"Photo Library", style:.default) {(action) in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
                 let imagePicker = UIImagePickerController()
                 imagePicker.delegate = self
